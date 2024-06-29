@@ -1,7 +1,7 @@
 const mongoose = require ("mongoose");
 const validator = require ('validator');
 const { Schema } = mongoose ;
-const foodModel = new Schema ({
+const foodSchema = new Schema ({
     title: {
         type : String,
         unique: true,
@@ -25,7 +25,7 @@ const foodModel = new Schema ({
             publicId:null,
         }
     },
-    })
+})
 
-const Food = mongoose.model('Food', foodModel);
-module.exports = Food;
+const foodModel = mongoose.model('Food', foodSchema);
+module.exports = foodModel;
