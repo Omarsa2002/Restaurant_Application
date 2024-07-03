@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 var bcrypt = require('bcryptjs');
 const CONFIG = require('../../../config/config.js');
 
-const userSchema = new mongoose.Schema(
+const chefSchema = new mongoose.Schema(
     {
         chefId: String,
         email: {
@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema(
 );
 
 
-userSchema.virtual("password").set(function(password){
+chefSchema.virtual("password").set(function(password){
     this.encryptedPassword=bcrypt.hashSync(password,parseInt(CONFIG.BCRYPT_SALT))
 })
 .get(function(){
@@ -61,6 +61,6 @@ userSchema.virtual("password").set(function(password){
 })
 
 
-const chefModel = mongoose.model('Chef', userSchema);
+const chefModel = mongoose.model('Chef', chefSchema);
 
 module.exports = chefModel;
