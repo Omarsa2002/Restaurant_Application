@@ -14,11 +14,9 @@ const chefSchema = new mongoose.Schema(
             type:String,
         },
         chefName:String,
-        birthdate: Date,
         gender:{
             type: String,
             enum: ['male', 'female'],
-            defult:""
         },
         phone: String,
         profileImage: String,

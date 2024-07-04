@@ -32,7 +32,7 @@ const updateChefProfile = async (req, res, next)=>{
             req.body.phone = req.body.phone;
         }
         if(req.body.bio){
-            req.body.bio = req.body.phone;
+            req.body.bio = req.body.bio;
         }
         if(req.body.city){
             req.body.city=req.body.city
@@ -91,6 +91,17 @@ const addFood = async (req, res, next)=>{
     }
 }
 
+const deleteFood = async (req, res, next)=>{
+    try{
+        const {chefId}=req.user; 
+        const {foodId} = req.params
+        const deletedFood = await foodModel.deleteOne({foodId});
+        sendResponse(res,constans.RESPONSE_CREATED,"food deleted",deletedFood,{});
+    }catch(error){
+        sendResponse( res,constans.RESPONSE_INT_SERVER_ERROR,error.message,{},constans.UNHANDLED_ERROR);
+    }
+}
+
 const updateFood = async (req, res, next)=>{
     try{
         const {foodId} =  req.params;
@@ -143,5 +154,6 @@ module.exports = {
     addFood,
     updateFood,
     chefFood,
-    chefData
+    chefData,
+    deleteFood
 }

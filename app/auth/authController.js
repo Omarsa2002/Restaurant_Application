@@ -16,7 +16,7 @@ const chefModel = require('../db/models/chefModel.js');
 //-------------------------------------user-------------------------------------//
 const signUp = async(req, res, next) => {
     try {
-        const { email, userName, password } = req.body;
+        const { email, userName, password, gender } = req.body;
         const user = await userModel.findOne({ email: email });
         if (!user) {
             const newUser = await userModel({
@@ -24,6 +24,7 @@ const signUp = async(req, res, next) => {
                 userId: "User" + uuidv4(),
                 userName,
                 password,
+                gender
             });
             // const savedUser = await newUser.save();
             // sendResponse(res,constans.RESPONSE_CREATED,"Done",savedUser.userId,{});
@@ -101,7 +102,7 @@ const login = async (req, res, next) => {
 //-------------------------------------chef-------------------------------------//
 const chefSignUp = async (req, res, next) => {
     try {
-        const { email, name, phone, password, city, country, state, foods } = req.body;
+        const { email, name, phone, password, city, country, state, foods, gender } = req.body;
         const chef = await chefModel.findOne({ email: email });
         if (!chef) {
             const newChef = await chefModel({
@@ -113,7 +114,8 @@ const chefSignUp = async (req, res, next) => {
                 country,
                 state,
                 phone,
-                chefFoods: foods 
+                chefFoods: foods,
+                gender
             });
             const confirmLink = "confirm your account";
             const confirmMessag = "Confirmation Email Send From restaurant Application";

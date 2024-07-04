@@ -10,5 +10,6 @@ router.post('/addfood', verifyToken,  myMullter().fields([{ name: "image", maxCo
 router.get('/cheffood', verifyToken, chefCon.chefFood);
 router.put('/updatefood/:foodId', verifyToken,  myMullter().fields([{ name: "image", maxCount: 1 }]), HME, chefCon.updateFood);
 router.get('/chefdata', verifyToken, chefCon.chefData);
+router.delete('/deletefood/:foodId', verifyToken, chefCon.deleteFood);
 
 module.exports = router;

@@ -14,18 +14,12 @@ const userSchema = new mongoose.Schema(
             type:String,
         },
         userName:String,
-        birthdate: Date,
         gender:{
             type: String,
             enum: ['male', 'female'],
-            defult:""
         },
         phone: String,
         profileImage: String,
-        fieldOfInterest: {
-            type:[String],
-            default:[]
-        },
         bio:String,
         activateEmail: {
             type: Boolean,
